@@ -32,9 +32,6 @@ application.add_handler(CommandHandler("start", start))
 print("Starting")
 pbot.start()
 print("Pyro started")
-application.run_polling(stop_signals=None)
-try:
-    pbot.stop()
-except RuntimeError:
-    pass
+application.run_polling(close_loop=False)
+pbot.stop()
 print("Bye")
