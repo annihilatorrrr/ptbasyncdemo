@@ -1,4 +1,4 @@
 Pyrogram~=2.0.49
 TgCrypto~=1.2.3
-uvloop~=0.16.0
+# uvloop~=0.16.0
 python-telegram-bot~=20.0a4
