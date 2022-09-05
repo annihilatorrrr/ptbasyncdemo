@@ -31,7 +31,7 @@ application = Application.builder().token("1809261258:AAHusgeYUgAcW6F1poVEscUD55
 application.add_handler(CommandHandler("start", start))
 print("Starting")
 pbot.start()
-print("Pyro started")
+print("Bot started")
 application.run_polling(close_loop=False)
 pbot.stop()
 print("Bye")
