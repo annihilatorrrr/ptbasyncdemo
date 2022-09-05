@@ -1,6 +1,6 @@
-from uvloop import install
+# from uvloop import install
 
-install()
+#  install()
 from telegram import Update
 from pyrogram import Client, filters
 from pyrogram.types import Message
