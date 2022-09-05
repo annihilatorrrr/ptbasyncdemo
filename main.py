@@ -27,8 +27,14 @@ async def start(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
     return
 
 
-application = Application.builder().token("TOKEN").build()
+application = Application.builder().token("1809261258:AAHusgeYUgAcW6F1poVEscUD55Ty4_EULA0").build()
 application.add_handler(CommandHandler("start", start))
+print("Starting")
 pbot.start()
+print("Pyro started")
 application.run_polling()
+print("ptb started")
 idle()
+print("idle break")
+pbot.stop()
+print("Bye")
