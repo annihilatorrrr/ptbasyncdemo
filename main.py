@@ -2,7 +2,7 @@ from uvloop import install
 
 install()
 from telegram import Update
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from telegram.ext import Application, CommandHandler, ContextTypes
 
@@ -34,7 +34,5 @@ pbot.start()
 print("Pyro started")
 application.run_polling()
 print("ptb started")
-idle()
-print("idle break")
 pbot.stop()
 print("Bye")
