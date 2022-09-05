@@ -33,4 +33,8 @@ print("Starting")
 pbot.start()
 print("Pyro started")
 application.run_polling()
+try:
+    pbot.stop()
+except RuntimeError:
+    pass
 print("Bye")
