@@ -3,9 +3,7 @@ from asyncio import sleep
 from subprocess import PIPE, Popen
 
 from telegram import Update
-from pyrogram import Client, filters
-from pyrogram.types import Message
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, Defaults
 
 defaults = Defaults(block=False)
 
