@@ -2,7 +2,7 @@ from os import environ
 from asyncio import get_event_loop, sleep
 from subprocess import PIPE, Popen
 
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, Defaults
 
 defaults = Defaults(block=False)
