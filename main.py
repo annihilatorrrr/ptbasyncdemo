@@ -30,7 +30,7 @@ async def sleeper2(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
     return
 
 
-builder = Application.builder().token(environ.get("TOKEN")).defaults(defaults).concurrent_updates(True).build()
+application = Application.builder().token(environ.get("TOKEN")).defaults(defaults).concurrent_updates(True).build()
 application.add_handler(CommandHandler("start", start))
 application.add_handler(CommandHandler("work", sleeper))
 application.add_handler(CommandHandler("work1", sleeper2))
