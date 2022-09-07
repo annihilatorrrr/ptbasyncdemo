@@ -24,7 +24,10 @@ async def sleeper(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def sleeper2(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
     a = await update.effective_message.reply_text("Starting non sync work ...")
-    Popen("sleep 10", stdout=PIPE, stderr=PIPE, shell=True)
+    process = Popen("sleep 10", stdout=PIPE, stderr=PIPE, shell=True)
+    stdout, stderr = process.communicate()
+    stdout = stdout.decode()
+    stderr = stderr.decode()
     await a.edit_text("Done!")
     # this will stop everything! so we should what ?
     return
