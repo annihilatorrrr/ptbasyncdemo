@@ -1,8 +1,8 @@
 from os import environ
-from asyncio import get_event_loop, sleep
+from asyncio import sleep
 from subprocess import PIPE, Popen
 
-from telegram import Message, Update
+from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, Defaults
 
 defaults = Defaults(block=False)
@@ -23,7 +23,7 @@ async def sleeper(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def sleeper2(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
-    a = await update.effective_message.reply_text("Starting non sync work ...")
+    a = await update.effective_message.reply_text("Starting sync work ...")
     process = Popen("sleep 10", stdout=PIPE, stderr=PIPE, shell=True)
     stdout, stderr = process.communicate()
     stdout = stdout.decode()
