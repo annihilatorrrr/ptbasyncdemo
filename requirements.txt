@@ -1,1 +1,2 @@
 python-telegram-bot~=20.0a4
+git+https://github.com/LonamiWebs/Telethon@v1.24
