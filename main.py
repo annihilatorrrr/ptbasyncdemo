@@ -1,42 +1,41 @@
 from os import environ
-from asyncio import sleep
-from subprocess import PIPE, Popen
 
+from pyrogram import Client
+from pyrogram.filters import command, channel
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, Defaults
 
 defaults = Defaults(block=False)
+TOKEN = environ.get("TOKEN")
+pbot = Client(
+    "ptbasyncdemo",
+    api_id=6,
+    api_hash="",
+    bot_token=TOKEN,
+)
 
 
 async def start(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text("PTB OP!")
-    # check aliveness!
     return
 
 
-async def sleeper(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
-    a = await update.effective_message.reply_text("Starting ...")
-    await sleep(10)
-    await a.edit_text("Done!")
-    # this will work!
+@pbot.on_message(command("start") & ~channel)
+async def startp(_: pbot, m: Message):
+    await m.reply_text("PYRO OP!")
     return
 
 
-async def sleeper2(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
-    a = await update.effective_message.reply_text("Starting sync work ...")
-    process = Popen("sleep 10", stdout=PIPE, stderr=PIPE, shell=True)
-    stdout, stderr = process.communicate()
-    stdout = stdout.decode()
-    stderr = stderr.decode()
-    await a.edit_text("Done!")
-    # this will stop everything! so what should we do ?
+async def startpyro(_: Application):
+    await pbot.start()
+    print("PYROGRAM: Started!")
     return
 
 
-application = Application.builder().token(environ.get("TOKEN")).defaults(defaults).concurrent_updates(True).build()
+builder = (Application.builder().token(TOKEN).defaults(defaults).concurrent_updates(True).post_init(startpyro))
+application = builder.build()
 application.add_handler(CommandHandler("start", start))
-application.add_handler(CommandHandler("work", sleeper))
-application.add_handler(CommandHandler("work1", sleeper2))
-print("Bot started")
-application.run_polling()
-print("Bye")
+print("PTB: Started!")
+application.run_polling(close_loop=False)
+pbot.stop()
+print("Bye!")
